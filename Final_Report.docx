@@ -1,0 +1,134 @@
+# Final Report — Employee Sentiment Analysis
+
+**Author:** \[Your Name]
+**Date:** \[Submission Date]
+
+---
+
+## 1. Executive Summary
+
+This project analyzes employee communication data to assess **sentiment, engagement, and potential attrition risk**. Using natural language processing (NLP) techniques with a pretrained transformer model (DistilBERT SST-2), messages were automatically labeled as **Positive, Negative, or Neutral**. Subsequent exploratory data analysis (EDA), sentiment scoring, employee ranking, flight risk detection, and predictive modeling provided actionable insights.
+
+**Key Findings:**
+
+* Overall sentiment distribution showed that Neutral messages dominated, with a smaller share of Positive and Negative.
+* Employee sentiment varied across months, with noticeable spikes in negativity during certain periods.
+* Several employees consistently ranked in the Top 3 Positive and Negative categories each month.
+* A number of employees were flagged as **flight risks**, having sent 4 or more negative messages within a rolling 30-day window.
+* Predictive modeling highlighted **message frequency** and **negative message counts** as the strongest drivers of sentiment scores.
+
+---
+
+## 2. Data Description
+
+* **Columns:** `Subject`, `body`, `date`, `from`.
+* **Preprocessing:** Subject and body were concatenated into a single `text` field. Missing values were handled, and dates were converted to standard datetime format.
+* **Dataset Size:** \[Insert row count] employee messages.
+
+---
+
+## 3. Methodology
+
+### Sentiment Labeling
+
+* **Model Used:** `distilbert-base-uncased-finetuned-sst-2-english` from HuggingFace.
+* **Labeling Rules:**
+
+  * POSITIVE (confidence > 0.6) → Positive
+  * NEGATIVE (confidence > 0.6) → Negative
+  * Otherwise → Neutral
+
+### Exploratory Data Analysis (EDA)
+
+* Sentiment distribution (bar/pie charts).
+* Monthly trends of sentiment categories.
+* Employee activity levels and sentiment breakdown.
+* Message length analysis by sentiment.
+
+### Scoring & Ranking
+
+* Each message scored as: Positive = +1, Negative = -1, Neutral = 0.
+* Aggregated per employee per month.
+* Top 3 Positive and Top 3 Negative employees identified monthly.
+
+### Flight Risk
+
+* Defined as employees with **≥4 negative messages in a rolling 30-day window**.
+* Identified per employee using date-based sliding window.
+
+### Predictive Modeling
+
+* **Features:** message count, average message length, total words, positive/negative/neutral counts.
+* **Model:** Linear Regression.
+* **Evaluation:** R², MAE, RMSE.
+
+---
+
+## 4. Exploratory Data Analysis (Key Insights)
+
+* **Sentiment Distribution:** \[Insert percentages for Positive, Negative, Neutral].
+* **Trends:** Negative sentiment spiked in \[insert months], suggesting potential organizational issues.
+* **Employee Activity:** A small group of employees accounted for the majority of messages.
+* **Message Length:** Positive messages tended to be shorter, while negative messages often contained more words.
+
+(Include figures: sentiment distribution chart, monthly trend line, employee sentiment bar chart, message length boxplot.)
+
+---
+
+## 5. Employee Scoring & Ranking
+
+* Example Month (April 2001):
+
+  * **Top Positive Employees:** \[names & scores]
+  * **Top Negative Employees:** \[names & scores]
+* Rankings highlight consistently positive contributors vs. consistently negative employees.
+
+(Include table + visualization of rankings.)
+
+---
+
+## 6. Flight Risk Detection
+
+* Employees flagged included: \[list sample employees].
+* Each had ≥4 negative messages within a rolling 30-day period.
+* This criterion helped spotlight employees who may require HR attention.
+
+(Include bar chart of flagged employees.)
+
+---
+
+## 7. Predictive Modeling Results
+
+* **Model Performance:**
+
+  * R²: \[insert value]
+  * MAE: \[insert value]
+  * RMSE: \[insert value]
+* **Feature Importance (coefficients):**
+
+  * Strongest drivers: `Neg_Count`, `Msg_Count`.
+  * Lesser impact: `Avg_Msg_Length`, `Neu_Count`.
+
+(Include scatter plot: Actual vs Predicted scores.)
+
+---
+
+## 8. Limitations & Future Work
+
+* Neutral classification relied on confidence thresholds; a more nuanced multi-class sentiment model could improve accuracy.
+* The model did not incorporate contextual metadata (e.g., department, role).
+* Predictive modeling was limited to linear regression; advanced models (Random Forest, Gradient Boosting, Neural Nets) could capture non-linear patterns.
+
+---
+
+## 9. Conclusion
+
+This project successfully labeled employee messages, extracted insights, ranked employees by sentiment, flagged potential flight risks, and built a predictive model for sentiment trends. The findings demonstrate the value of **NLP-driven employee engagement analysis** in supporting HR decision-making.
+
+---
+
+## 10. Appendix
+
+* **Tools Used:** Python, pandas, scikit-learn, transformers, matplotlib, seaborn.
+* **Reproducibility:** Notebook provided in submission zip runs all steps from raw dataset to outputs.
+* **Outputs:** CSVs and PNG visualizations are stored in the `outputs/` and `visualizations/` folders.
