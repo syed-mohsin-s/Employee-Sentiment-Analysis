@@ -25,11 +25,3 @@ Run dashboard:
 ```bash
 streamlit run dashboard.py
 
-
-Launch notebook:
-```bash
-jupyter lab
-# or
-jupyter notebook
-
-Run cells in order. Outputs will be saved to the visualizations/ folder and CSV files in repo root.
