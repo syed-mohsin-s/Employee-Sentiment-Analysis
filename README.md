@@ -1,48 +1,25 @@
-# Employee Sentiment Analysis 🚀
+# Employee Sentiment Analysis
 
-This project analyzes employee feedback using **Transformer-based NLP models** to identify sentiment, calculate employee scores, rank employees, and detect flight risks. Finally, an interactive **Streamlit dashboard** provides insights for HR managers.
+## Overview
+This repository contains an end-to-end solution for labeling, analyzing, ranking, and modeling employee sentiment from email messages. It follows the project tasks: Sentiment Labeling, EDA, Employee Scoring, Ranking, Flight Risk Detection, and Predictive Modeling.
 
----
+## Files & Folders
+- `employee_sentiment_analysis.ipynb` - Main notebook (all tasks and visualizations).
+- `test(in).csv` - Raw dataset (input).
+- `labeled_dataset.csv` - Output from Task 1 (includes `Sentiment`).
+- `employee_monthly_scores.csv` - Task 3 outputs.
+- `employee_rankings.csv` - Task 4 outputs.
+- `flight_risk_employees.csv` - Task 5 outputs.
+- `visualizations/` - PNG images produced during EDA and modeling.
+- `requirements.txt` - Python package requirements.
 
-## 📌 Project Workflow
-
-### **Task 1 – Sentiment Classification**
-- Used `DistilBERT` fine-tuned on employee feedback (`feedback_clean` column).
-- Preprocessed data and trained with HuggingFace `Trainer`.
-- Generated predictions (`test_set_with_sentiment.csv`) with confidence scores.
-
-### **Task 2 – Exploratory Data Analysis (EDA)**
-- Explored feedback distribution, missing values, and sentiment balance.
-- Visualizations:
-  - Sentiment distribution (train/test)
-  - Monthly sentiment trends
-  - Top employees by feedback count
-  - WordClouds for positive & negative feedback
-
-### **Task 3 – Employee Score Calculation**
-- Converted predicted sentiments into numeric scores:
-  - Positive = +1  
-  - Negative = –1  
-  - Neutral = 0  
-- Calculated **per-employee sentiment scores** (monthly if `reviewed` available, otherwise overall).
-
-### **Task 4 – Employee Ranking**
-- Ranked employees based on sentiment scores.
-- Ranking available both **monthly** and **globally**.
-
-### **Task 5 – Flight Risk Identification**
-- Identified **High / Medium / Low risk** employees based on:
-  - Sentiment score
-  - Rank percentile
-- Generated `employee_flight_risk.csv` for HR insights.
-
-### **Task 6 – Dashboard**
-- Built an interactive **Streamlit dashboard** with:
-  - Sentiment distribution  
-  - Trends over time  
-  - Employee scores  
-  - Rankings  
-  - Flight risk levels  
+## How to run (local)
+1. Create environment (recommended):
+   ```bash
+   python -m venv venv
+   source venv/bin/activate   # macOS / Linux
+   venv\Scripts\activate      # Windows
+   pip install -r requirements.txt
 
 Run dashboard:
 ```bash
